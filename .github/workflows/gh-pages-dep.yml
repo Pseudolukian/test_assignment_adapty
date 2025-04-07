@@ -1,47 +1,62 @@
 name: Deploy Docusaurus to GitHub Pages
 
+permissions:
+  contents: read
+  pages: write
+  # Добавляем разрешение на запись комментариев
+  pull-requests: write  # Нужен доступ для комментирования, если это PR
+  repository-projects: write  # На случай, если это связано с коммитом напрямую
+
 on:
   push:
     branches:
       - main
     paths-ignore:
-      - 'README.md'  # Игнорируем изменения только в README
+      - 'README.md'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
-      # Checkout кода
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Получаем полную историю для корректной работы версий
+          fetch-depth: 0
 
-      # Установка Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Указываем версию Node.js (можно изменить под ваши нужды)
+          node-version: '20'
           cache: 'npm'
 
-      # Установка зависимостей
       - name: Install Dependencies
         run: npm ci
 
-      # Сборка документации
       - name: Build
         run: npm run build
 
-      # Деплой на gh-pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          cname: docs.adapty.io  # Опционально: если нужен кастомный домен
-          destination_dir: docs  # Соответствует baseUrl: "/docs/" в конфиге
-          keep_files: false  # Очищаем старые файлы перед деплоем
+          destination_dir: docs
+          keep_files: false
 
-    # Условие для проверки, что изменен не только README
-    if: "github.event_name == 'push' && !contains(github.event.head_commit.message, 'README')"
+      - name: Add comment with docs URL
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const commitSha = context.sha;
+            const repoOwner = context.repo.owner;
+            const repoName = context.repo.repo;
+            const docsUrl = `https://${repoOwner}.github.io/${repoName}/docs/`;
+            
+            await github.rest.repos.createCommitComment({
+              owner: repoOwner,
+              repo: repoName,
+              commit_sha: commitSha,
+              body: `Documentation deployed successfully! Check it out here: ${docsUrl}`
+            });
