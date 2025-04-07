@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkadapty_docs=self.webpackChunkadapty_docs||[]).push([[8035],{90416:(s,a,c)=>{c.r(a)}}]);
