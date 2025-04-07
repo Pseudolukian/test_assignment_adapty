@@ -21,8 +21,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "adapty", // Usually your GitHub org/user name.
-  projectName: "adapty-docs", // Usually your repo name.
+  organizationName: "Pseudolukian", // Usually your GitHub org/user name.
+  projectName: "test_assignment_adapty", // Usually your repo name.
 
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "ignore",
