@@ -1,11 +1,6 @@
 name: Deploy Docusaurus to GitHub Pages
 
-permissions:
-  contents: read
-  pages: write
-  # Добавляем разрешение на запись комментариев
-  pull-requests: write  # Нужен доступ для комментирования, если это PR
-  repository-projects: write  # На случай, если это связано с коммитом напрямую
+permissions: write-all
 
 on:
   push:
