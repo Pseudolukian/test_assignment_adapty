@@ -4,8 +4,8 @@
   <ShortName>Adapty</ShortName>
   <Description>Search Adapty</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://adapty.io/docs/img/favicon_black.svg</Image>
-  <Url type="text/html" method="get" template="https://adapty.io/docs/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://adapty.io/docs/opensearch.xml" />
-  <moz:SearchForm>https://adapty.io/docs/</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://adapty.io/test_assignment_adapty/docs/img/favicon_black.svg</Image>
+  <Url type="text/html" method="get" template="https://adapty.io/test_assignment_adapty/docs/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://adapty.io/test_assignment_adapty/docs/opensearch.xml" />
+  <moz:SearchForm>https://adapty.io/test_assignment_adapty/docs/</moz:SearchForm>
 </OpenSearchDescription>

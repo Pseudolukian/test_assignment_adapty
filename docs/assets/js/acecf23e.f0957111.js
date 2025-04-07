@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkadapty_docs=self.webpackChunkadapty_docs||[]).push([[1903],{1912:s=>{s.exports=JSON.parse('{"blogBasePath":"/test_assignment_adapty/docs/blog","blogTitle":"Blog"}')}}]);
